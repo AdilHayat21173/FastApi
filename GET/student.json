@@ -1,0 +1,52 @@
+{
+    "1": {
+        "id": 1,
+        "name": "Ali Khan",
+        "weight": 68,
+        "cgpa": 3.6,
+        "age": 21,
+        "gender": "Male",
+        "city": "Lahore",
+        "field_interested": "Web Development"
+    },
+    "2": {
+        "id": 2,
+        "name": "Sara Ahmed",
+        "weight": 55,
+        "cgpa": 3.9,
+        "age": 22,
+        "gender": "Female",
+        "city": "Karachi",
+        "field_interested": "Artificial Intelligence"
+    },
+    "3": {
+        "id": 3,
+        "name": "Hassan Raza",
+        "weight": 72,
+        "cgpa": 3.4,
+        "age": 23,
+        "gender": "Male",
+        "city": "Islamabad",
+        "field_interested": "App Development"
+    },
+    "4": {
+        "id": 4,
+        "name": "Ayesha Malik",
+        "weight": 60,
+        "cgpa": 3.8,
+        "age": 20,
+        "gender": "Female",
+        "city": "Faisalabad",
+        "field_interested": "Web Development"
+    },
+    "5": {
+        "id": 5,
+        "name": "Bilal Hussain",
+        "weight": 80,
+        "cgpa": 3.5,
+        "age": 24,
+        "gender": "Male",
+        "city": "Multan",
+        "field_interested": "Artificial Intelligence"
+    }
+}
