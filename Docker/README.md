@@ -201,22 +201,34 @@ docker run -p 3000:3000 my-app:latest
 # Test in browser: http://localhost:3000
 ```
 
-#### Step 6: Push to Docker Hub
+#### Step 6: Complete Developer Workflow
 
-##### 6.1: Create Docker Hub Account
-- Go to [hub.docker.com](https://hub.docker.com)
-- Sign up for free account
-
-##### 6.2: Login and Push
+##### 6.1: One-Time Setup
 ```bash
-# Login to Docker Hub
+# 0) (one time) Login to Docker Hub
 docker login
+```
 
-# Tag image for Docker Hub
-docker tag my-app:latest yourusername/my-app:latest
+##### 6.2: Build and Deploy Process
+```bash
+# 1) Build the Docker image
+docker build -t adilhayat/admission-info:latest .
 
-# Push to Docker Hub
-docker push yourusername/my-app:latest
+# 2) (optional) Test locally before pushing
+docker run -d --name admission-api -p 8000:8000 adilhayat/admission-info:latest
+
+# Open http://localhost:8000/docs to test FastAPI documentation
+# Open http://localhost:8000 to test your frontend
+
+# Stop test container after testing
+docker rm -f admission-api
+
+# 3) Push to Docker Hub
+docker push adilhayat/admission-info:latest
+
+# 4) (recommended) Push a version tag too for better version control
+docker tag adilhayat/admission-info:latest adilhayat/admission-info:v1.0.0
+docker push adilhayat/admission-info:v1.0.0
 ```
 
 ### 🧪 Phase 2: Tester Setup & Testing
@@ -227,30 +239,33 @@ docker push yourusername/my-app:latest
 # Install and start Docker Desktop
 ```
 
-#### Step 2: Pull Image from Docker Hub
+#### Step 2: Complete Tester Workflow
 ```bash
-# Pull the application image
-docker pull yourusername/my-app:latest
+# 1) Pull the image from Docker Hub
+docker pull adilhayat/admission-info:latest
 
-# Verify image is downloaded
-docker images
+# OR pull a specific version for stable testing
+# docker pull adilhayat/admission-info:v1.0.0
+
+# 2) Run the container
+docker run -d --name admission-api -p 8000:8000 adilhayat/admission-info:latest
+
+# 3) Open the application in your browser
+# http://localhost:8000      (Main Application Frontend)
+# http://localhost:8000/docs (FastAPI Documentation & API Testing)
+
+# 4) Stop and remove container when testing is complete
+docker rm -f admission-api
 ```
 
-#### Step 3: Run the Application
+#### Step 3: Testing Different Versions
 ```bash
-# Run container (single command!)
-docker run -p 3000:3000 yourusername/my-app:latest
+# Test specific version
+docker pull adilhayat/admission-info:v1.0.0
+docker run -d --name admission-api-v1 -p 8000:8000 adilhayat/admission-info:v1.0.0
 
-# Application is now running at: http://localhost:3000
-```
-
-#### Step 4: Test Different Versions
-```bash
-# Pull specific version
-docker pull yourusername/my-app:v1.0
-
-# Run specific version
-docker run -p 3000:3000 yourusername/my-app:v1.0
+# Clean up after testing
+docker rm -f admission-api-v1
 ```
 
 ---
@@ -458,7 +473,6 @@ Docker revolutionizes the development and testing workflow by:
 ### 🎯 Key Takeaway
 > With Docker, developers can package once and testers can run anywhere, eliminating the "it works on my machine" problem forever!
 
-<img width="975" height="293" alt="Image" src="https://github.com/user-attachments/assets/93d07f1f-0862-43d3-8791-d1a74d7ebe29" />
 ---
 
 **Happy Dockerizing! 🐳✨**
